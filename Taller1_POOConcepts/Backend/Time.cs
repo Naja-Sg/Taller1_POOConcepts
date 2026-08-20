@@ -73,12 +73,6 @@ public class Time
     }
 
     //Public Methods
-
-    public Time Add (Time other)
-    {
-
-    }
-
     public override string ToString()
     {
         if (Hour  < 12 && Hour >= 0) 
@@ -91,6 +85,62 @@ public class Time
         }
     }
 
+    public int ToMinutes()
+    {
+        try
+        {
+            ValidHour(Hour);
+            ValidMinute(Minute);
+            ValidSecond(Second);
+            ValidMillisecond(Millisecond);
+
+            return (Hour * 60) + Minute;
+
+        }
+        catch
+        {
+            return 0;
+        }
+
+    }
+
+    public int ToSeconds()
+    {
+        try
+        {
+            ValidHour(Hour);
+            ValidMinute(Minute);
+            ValidSecond(Second);
+            ValidMillisecond(Millisecond);
+
+            return (Hour * 3600) + (Minute*60) + Second;
+
+        }
+        catch
+        {
+            return 0;
+        }
+
+    }
+
+    public int ToMilliseconds()
+    {
+        try
+        {
+            ValidHour(Hour);
+            ValidMinute(Minute);
+            ValidSecond(Second);
+            ValidMillisecond(Millisecond);
+
+            return (Hour * 3600000) + (Minute * 60000) + (Second*1000) + Millisecond;
+
+        }
+        catch
+        {
+            return 0;
+        }
+
+    }
 
 
     //Private Methods
