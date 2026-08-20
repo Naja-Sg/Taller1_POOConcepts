@@ -132,13 +132,33 @@ public class Time
             ValidSecond(Second);
             ValidMillisecond(Millisecond);
 
-            return (Hour * 3600000) + (Minute * 60000) + (Second*1000) + Millisecond;
+            return ((Hour * 3600000) + (Minute * 60000) + (Second*1000) + Millisecond);
 
         }
         catch
         {
             return 0;
         }
+
+    }
+
+    public Time Add(Time time)
+    {
+        int totalMilliseconds = Millisecond + time.Millisecond;
+        int extraSeconds = totalMilliseconds / 1000; //1
+        int finalMilliseconds = totalMilliseconds % 1000; // 500
+
+        int totalSeconds = (Second + time.Second) + extraSeconds; //71
+        int extraMinutes = totalSeconds / 60; // 1
+        int finalSeconds = totalSeconds % 60; // 11
+
+        int totalMinutes = (Minute + time.Minute) + extraMinutes; //41
+        int extraHours = totalMinutes / 60; // 0
+        int finalMinutes = totalMinutes % 60; // 41
+
+        int finalHours = (Hour + time.Hour) + extraHours; //20
+
+        return new Time(finalHours, finalMinutes, finalSeconds, finalMilliseconds);
 
     }
 
