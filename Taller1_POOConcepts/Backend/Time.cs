@@ -145,18 +145,18 @@ public class Time
     public Time Add(Time time)
     {
         int totalMilliseconds = Millisecond + time.Millisecond;
-        int extraSeconds = totalMilliseconds / 1000; //1
-        int finalMilliseconds = totalMilliseconds % 1000; // 500
+        int extraSeconds = totalMilliseconds / 1000;
+        int finalMilliseconds = totalMilliseconds % 1000;
 
-        int totalSeconds = (Second + time.Second) + extraSeconds; //71
-        int extraMinutes = totalSeconds / 60; // 1
-        int finalSeconds = totalSeconds % 60; // 11
+        int totalSeconds = (Second + time.Second) + extraSeconds;
+        int extraMinutes = totalSeconds / 60; 
+        int finalSeconds = totalSeconds % 60;
 
-        int totalMinutes = (Minute + time.Minute) + extraMinutes; //41
-        int extraHours = totalMinutes / 60; // 0
-        int finalMinutes = totalMinutes % 60; // 41
+        int totalMinutes = (Minute + time.Minute) + extraMinutes;
+        int extraHours = totalMinutes / 60;
+        int finalMinutes = totalMinutes % 60;
 
-        int finalHours = (Hour + time.Hour) + extraHours; //20
+        int finalHours = (Hour + time.Hour) + extraHours;
 
         if (finalHours >= 24)
         {
