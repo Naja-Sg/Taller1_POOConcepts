@@ -75,13 +75,13 @@ public class Time
     //Public Methods
     public override string ToString()
     {
-        if (Hour  < 12 && Hour >= 0) 
+        if (Hour <= 12 && Hour >= 0) 
         {
-        return $"{Hour}:{Minute}:{Second}:{Millisecond} AM";
+        return $"{Hour:D2}:{Minute:D2}:{Second:D2}:{Millisecond:D3} AM";
         }
         else
         {
-            return $"{Hour}:{Minute}:{Second}:{Millisecond} PM";
+            return $"{Hour-12:D2}:{Minute:D2}:{Second:D2}:{Millisecond:D3} PM";
         }
     }
 
@@ -158,8 +158,27 @@ public class Time
 
         int finalHours = (Hour + time.Hour) + extraHours; //20
 
+        if (finalHours >= 24)
+        {
+            return new Time(finalHours-24, finalMinutes, finalSeconds, finalMilliseconds);
+        }
+
         return new Time(finalHours, finalMinutes, finalSeconds, finalMilliseconds);
 
+    }
+
+    public bool IsOtherDay (Time time1)
+    {
+        int finalHour = Hour + time1.Hour;
+        if (finalHour >= 24)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
     }
 
 
@@ -182,7 +201,7 @@ public class Time
             return minute;
         }
 
-        throw new Exception($"The minute: {minute} is not valid.");
+        throw new Exception($"The minute: {minute}, is not valid.");
 
     }
 
@@ -193,7 +212,7 @@ public class Time
             return second;
         }
 
-        throw new Exception($"The minute: {second} is not valid.");
+        throw new Exception($"The minute: {second}, is not valid.");
 
     }
 
@@ -204,7 +223,7 @@ public class Time
             return millisecond;
         }
 
-        throw new Exception($"The minute: {millisecond} is not valid.");
+        throw new Exception($"The minute: {millisecond}, is not valid.");
 
     }
 
